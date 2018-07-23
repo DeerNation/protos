@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "preprotoc": "rm -r frontend && mkdir frontend",
     "protoc": "protoc --proto_path=. --qx_out=frontend *.proto google/**/*.proto"
   },
   "repository": {

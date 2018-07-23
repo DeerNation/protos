@@ -2,7 +2,7 @@
 /**
  * An Activity is everything that can be published in a channel.
  * it contains of some metadata and the content of a certain type.
- * Activity class generated from protobuf definition "protos/model.proto".
+ * Activity class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

@@ -1,7 +1,7 @@
 
 /**
  *
- * Token class generated from protobuf definition "protos/api.proto".
+ * Token class generated from protobuf definition "api.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

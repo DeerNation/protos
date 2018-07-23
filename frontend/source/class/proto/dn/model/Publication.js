@@ -2,7 +2,7 @@
 /**
  * A Publication describes the relation of an activity that has been published
  * by an acton in a channel.
- * Publication class generated from protobuf definition "protos/model.proto".
+ * Publication class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

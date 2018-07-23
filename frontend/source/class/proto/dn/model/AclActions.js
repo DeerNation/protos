@@ -1,7 +1,7 @@
 
 /**
  *
- * AclActions class generated from protobuf definition "protos/model.proto".
+ * AclActions class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

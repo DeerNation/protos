@@ -1,7 +1,7 @@
 
 /**
  * Reference to an external source, e.g. a facebook feed entry, an external website, etc.
- * ExternalRef class generated from protobuf definition "protos/model.proto".
+ * ExternalRef class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

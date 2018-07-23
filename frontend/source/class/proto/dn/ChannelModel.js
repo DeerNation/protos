@@ -4,7 +4,7 @@
  * - allowed actions for current user on channel
  * - allowed actions for current user on channel activities
  * - the channels publications
- * ChannelModel class generated from protobuf definition "protos/api.proto".
+ * ChannelModel class generated from protobuf definition "api.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

@@ -1,7 +1,7 @@
 
 /**
  *
- * ChannelRequest class generated from protobuf definition "protos/api.proto".
+ * ChannelRequest class generated from protobuf definition "api.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

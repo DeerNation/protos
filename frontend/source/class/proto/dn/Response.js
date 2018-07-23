@@ -1,7 +1,7 @@
 
 /**
  * Status response from backend
- * Response class generated from protobuf definition "protos/api.proto".
+ * Response class generated from protobuf definition "api.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * @require(proto.dn.response.UidsEntry)
  */

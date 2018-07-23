@@ -1,7 +1,7 @@
 syntax = "proto3";
 package dn;
 import "node_modules/protoc-gen-qx/protos/extensions.proto";
-import "protos/model.proto";
+import "model.proto";
 
 service Com {
     /**

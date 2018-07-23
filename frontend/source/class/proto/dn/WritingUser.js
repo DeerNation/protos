@@ -1,7 +1,7 @@
 
 /**
  * User currently writing in channel status.
- * WritingUser class generated from protobuf definition "protos/api.proto".
+ * WritingUser class generated from protobuf definition "api.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

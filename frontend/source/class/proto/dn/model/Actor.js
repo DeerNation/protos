@@ -1,7 +1,7 @@
 
 /**
  *
- * Actor class generated from protobuf definition "protos/model.proto".
+ * Actor class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

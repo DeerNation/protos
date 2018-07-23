@@ -1,7 +1,7 @@
 
 /**
  *
- * ChangeType class generated from protobuf definition "protos/api.proto".
+ * ChangeType class generated from protobuf definition "api.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

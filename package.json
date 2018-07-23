@@ -1,0 +1,27 @@
+{
+  "name": "protos",
+  "version": "1.0.0",
+  "description": "DeerNation proto definitions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "protoc": "protoc --proto_path=. --qx_out=frontend *.proto google/**/*.proto"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeerNation/protos.git"
+  },
+  "keywords": [
+    "DeerNation",
+    "proto"
+  ],
+  "author": "Tobias Bräutigam",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/DeerNation/protos/issues"
+  },
+  "homepage": "https://github.com/DeerNation/protos#readme",
+  "devDependencies": {
+    "protoc-gen-qx": "git+https://github.com/peuter/protoc-gen-qx.git"
+  }
+}

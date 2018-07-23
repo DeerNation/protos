@@ -1,7 +1,7 @@
 
 /**
  *
- * ACLRole class generated from protobuf definition "protos/model.proto".
+ * ACLRole class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

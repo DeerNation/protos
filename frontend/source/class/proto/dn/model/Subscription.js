@@ -1,7 +1,7 @@
 
 /**
  *
- * Subscription class generated from protobuf definition "protos/model.proto".
+ * Subscription class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

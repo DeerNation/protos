@@ -1,7 +1,7 @@
 
 /**
  * A List of publications
- * Publications class generated from protobuf definition "protos/model.proto".
+ * Publications class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

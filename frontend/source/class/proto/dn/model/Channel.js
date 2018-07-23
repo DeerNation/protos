@@ -1,7 +1,7 @@
 
 /**
  *
- * Channel class generated from protobuf definition "protos/model.proto".
+ * Channel class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */

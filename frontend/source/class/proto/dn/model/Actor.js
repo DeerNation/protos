@@ -289,7 +289,8 @@ qx.Class.define('proto.dn.model.Actor', {
       check: 'String',
       init: '',
       nullable: false,
-      event: 'changeStatus'
+      event: 'changeStatus',
+      '@': ['persist']
     }
   }
 })

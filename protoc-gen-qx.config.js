@@ -23,5 +23,6 @@ module.exports = {
   skipDeps: ['grpc-web-client.js'],
   skipDepLoadingFallback: true,
   withoutSemi: true,
-  repeatedClass: 'app.api.Array'
+  repeatedClass: 'app.api.Array',
+  require: ['node_modules/protoc-gen-qx/extensions_pb']
 }

@@ -140,7 +140,8 @@ qx.Class.define('proto.dn.model.Subscription', {
       check: 'Boolean',
       init: false,
       nullable: false,
-      event: 'changeFavorite'
+      event: 'changeFavorite',
+      '@': ['persist']
     }
   }
 })

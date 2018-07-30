@@ -55,6 +55,7 @@ qx.Class.define('proto.dn.model.Publication', {
         )
       }
       f = message.getPublished()
+      f = f instanceof Date ? f.toISOString() : ''
       if (f.length > 0) {
         writer.writeString(
           5,
@@ -169,10 +170,11 @@ qx.Class.define('proto.dn.model.Publication', {
     },
 
     published: {
-      check: 'String',
-      init: '',
-      nullable: false,
-      event: 'changePublished'
+      check: 'Date',
+      init: null,
+      nullable: true,
+      event: 'changePublished',
+      transform: '_toDate'
     },
 
     master: {

@@ -24,5 +24,8 @@ module.exports = {
   skipDepLoadingFallback: true,
   withoutSemi: true,
   repeatedClass: 'app.api.Array',
-  require: ['node_modules/protoc-gen-qx/extensions_pb']
+  require: ['node_modules/protoc-gen-qx/extensions_pb'],
+  whitelist: {
+    'google/protobuf/descriptor.proto': []
+  }
 }

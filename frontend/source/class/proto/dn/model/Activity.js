@@ -4,7 +4,7 @@
  * it contains of some metadata and the content of a certain type.
  * Activity class generated from protobuf definition "model.proto".
  * auto-generated code PLEASE DO NOT EDIT!
- * 
+ * @require(proto.google.protobuf.Any)
  */
 qx.Class.define('proto.dn.model.Activity', {
   extend: proto.core.BaseMessage,

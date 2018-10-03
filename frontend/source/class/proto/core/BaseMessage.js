@@ -16,7 +16,6 @@ qx.Class.define('proto.core.BaseMessage', {
       this.set(props)
     }
   },
-
   /*
   *****************************************************************************
      PROPERTIES
@@ -79,6 +78,18 @@ qx.Class.define('proto.core.BaseMessage', {
         return value
       }
       return '' + value
+    },
+
+    /**
+     * Parses JSON strings.
+     * @returns {var}
+     * @protected
+     */
+    _fromJson: function (value) {
+      if (qx.lang.Type.isString(value)) {
+        return qx.lang.Json.parse(value)
+      }
+      return value
     },
 
     /**

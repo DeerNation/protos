@@ -145,7 +145,7 @@ message ChannelRequest {
     string uid = 1;
     // channel name (as alternative to the uid)
     string channelId = 2;
-    string date = 3 [(qx).date = true];
+    string date = 3 [(qx).type = "date"];
     int32 limit = 4;
 }
 

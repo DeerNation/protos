@@ -164,6 +164,15 @@ qx.Class.define('proto.dn.Object', {
       return msg
     }
   },
+    
+  /*
+  *****************************************************************************
+     EVENTS
+  *****************************************************************************
+  */
+  events: {
+    'changeOneOfContent': 'qx.event.type.Data'
+  },
 
   /*
   *****************************************************************************
@@ -261,13 +270,21 @@ qx.Class.define('proto.dn.Object', {
     // oneOf property apply
     _applyOneOf0: function (value, old, name) {
       this.setContent(name)
-      
+
+      var oldValue = old
       // reset all other values
       Object.values(proto.dn.Object.ONEOFS[0]).forEach(function (prop) {
         if (prop !== name) {
+          if (this.get(prop)) {
+            old = this.get(prop)
+          }
           this.reset(prop)
         }
       }, this)
+
+      if (value !== oldValue) {
+        this.fireDataEvent('changeOneOfContent', value, oldValue)
+      }
     },
     /**
      * Get value for oneOf field 'content'.

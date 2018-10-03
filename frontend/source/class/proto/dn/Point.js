@@ -22,14 +22,14 @@ qx.Class.define('proto.dn.Point', {
      */
     serializeBinaryToWriter: function (message, writer) {
       var f = message.getLatitude()
-      if (f !== null) {
+      if (f !== 0) {
         writer.writeFloat(
           1,
           f
         )
       }
       f = message.getLongitude()
-      if (f !== null) {
+      if (f !== 0) {
         writer.writeFloat(
           2,
           f

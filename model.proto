@@ -40,7 +40,7 @@ message Activity {
     // UUID od the entry
     string uid = 1;
     // time of creation
-    string created = 3;// [(qx).date = true];
+    string created = 3;// [(qx).type = "date"];
     // content hash
     string hash = 4;
     // creator of this activity
@@ -75,7 +75,7 @@ message Publication {
     // The activity content of this publication
     Activity activity = 4;
     // pubishing time
-    string published = 5 [(qx).date = true];
+    string published = 5 [(qx).type = "date"];
     // true if this is the initial pubishing of the activity
     // false if it e.g. has been published by a share in another channel, probably by another actor
     bool master = 6;

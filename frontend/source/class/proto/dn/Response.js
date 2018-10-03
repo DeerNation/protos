@@ -162,6 +162,34 @@ qx.Class.define('proto.dn.Response', {
       return this.getUids().toArray().find(function (mapEntry) {
         return mapEntry.getKey() === key
       }, this)
+    },
+    
+    /**
+     * Set uids map entry value by key. If the entry does not exists yet, it will be added.
+     * 
+     * @param key {String} map key
+     * @param value {var} value to set
+     */
+    setUidsByKey: function (key, value) {
+      var entry = this.getUidsByKey(key)
+      if (entry) {
+        entry.setValue(value);
+      } else {
+        // add new entry
+        this.getUids().push(new proto.dn.response.UidsEntry({key: key, value: value}))
+      }
+    },
+    
+    /**
+     * Delete uids map entry by key.
+     * 
+     * @param key {String} map key
+     */
+    resetUidsByKey: function (key) {
+      var entry = this.getUidsByKey(key)
+      if (entry) {
+        this.getUids().remove(entry);
+      }
     }
   }
 })

@@ -67,7 +67,7 @@ qx.Class.define('proto.dn.model.Activity', {
           f
         )
       }
-      f = message.getContent()
+      f = message.getPayload()
       if (f != null) {
         writer.writeMessage(
           9,
@@ -133,7 +133,7 @@ qx.Class.define('proto.dn.model.Activity', {
           case 9:
             value = new proto.google.protobuf.Any()
             reader.readMessage(value, proto.google.protobuf.Any.deserializeBinaryFromReader)
-            msg.setContent(value)
+            msg.setPayload(value)
             break
           default:
             reader.skipField()
@@ -193,11 +193,11 @@ qx.Class.define('proto.dn.model.Activity', {
       event: 'changeMaster'
     },
 
-    content: {
+    payload: {
       check: 'proto.google.protobuf.Any',
       init: null,
       nullable: true,
-      event: 'changeContent'
+      event: 'changePayload'
     }
   }
 })

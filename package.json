@@ -24,5 +24,21 @@
   "homepage": "https://github.com/DeerNation/protos#readme",
   "devDependencies": {
     "protoc-gen-qx": "git+https://github.com/peuter/protoc-gen-qx.git"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "ignore": [
+      "node_modules/**"
+    ],
+    "globals": [
+      "app",
+      "qx",
+      "proto",
+      "jspb"
+    ]
   }
 }

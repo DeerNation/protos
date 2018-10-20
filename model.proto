@@ -49,7 +49,7 @@ message Activity {
     ExternalRef ref = 6;
     bool master = 8;
     // content of the activity
-    google.protobuf.Any content = 9;
+    google.protobuf.Any payload = 9;
 }
 
 /**

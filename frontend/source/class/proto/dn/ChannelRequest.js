@@ -35,7 +35,7 @@ qx.Class.define('proto.dn.ChannelRequest', {
           f
         )
       }
-      f = message.getDate()
+      f = message.getFromDate()
       f = f instanceof Date ? f.toISOString() : ''
       if (f.length > 0) {
         writer.writeString(
@@ -43,10 +43,25 @@ qx.Class.define('proto.dn.ChannelRequest', {
           f
         )
       }
+      f = message.getToDate()
+      f = f instanceof Date ? f.toISOString() : ''
+      if (f.length > 0) {
+        writer.writeString(
+          4,
+          f
+        )
+      }
       f = message.getLimit()
       if (f !== 0) {
         writer.writeInt32(
-          4,
+          5,
+          f
+        )
+      }
+      f = message.getPublicationsOnly()
+      if (f !== false) {
+        writer.writeBool(
+          6,
           f
         )
       }
@@ -89,11 +104,19 @@ qx.Class.define('proto.dn.ChannelRequest', {
             break
           case 3:
             value = reader.readString()
-            msg.setDate(value)
+            msg.setFromDate(value)
             break
           case 4:
+            value = reader.readString()
+            msg.setToDate(value)
+            break
+          case 5:
             value = reader.readInt32()
             msg.setLimit(value)
+            break
+          case 6:
+            value = reader.readBool()
+            msg.setPublicationsOnly(value)
             break
           default:
             reader.skipField()
@@ -125,11 +148,19 @@ qx.Class.define('proto.dn.ChannelRequest', {
       event: 'changeChannelId'
     },
 
-    date: {
+    fromDate: {
       check: 'Date',
       init: null,
       nullable: true,
-      event: 'changeDate',
+      event: 'changeFromDate',
+      transform: '_toDate'
+    },
+
+    toDate: {
+      check: 'Date',
+      init: null,
+      nullable: true,
+      event: 'changeToDate',
       transform: '_toDate'
     },
 
@@ -138,6 +169,13 @@ qx.Class.define('proto.dn.ChannelRequest', {
       init: 0,
       nullable: false,
       event: 'changeLimit'
+    },
+
+    publicationsOnly: {
+      check: 'Boolean',
+      init: false,
+      nullable: false,
+      event: 'changePublicationsOnly'
     }
   }
 })

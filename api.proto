@@ -145,8 +145,10 @@ message ChannelRequest {
     string uid = 1;
     // channel name (as alternative to the uid)
     string channelId = 2;
-    string date = 3 [(qx).type = "date"];
-    int32 limit = 4;
+    string fromDate = 3 [(qx).type = "date"];
+    string toDate = 4 [(qx).type = "date"];
+    int32 limit = 5;
+    bool publicationsOnly = 6;
 }
 
 /**

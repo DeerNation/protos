@@ -144,11 +144,18 @@ message ChannelRequest {
     // UID of the channel
     string uid = 1;
     // channel name (as alternative to the uid)
-    string channelId = 2;
     string fromDate = 3 [(qx).type = "date"];
     string toDate = 4 [(qx).type = "date"];
+    string channelId = 2;
     int32 limit = 5;
     bool publicationsOnly = 6;
+    PayloadFilter payloadFilter = 7;
+}
+
+message PayloadFilter {
+    string type = 1;
+    string fromDate = 2 [(qx).type = "date"];
+    string toDate = 3 [(qx).type = "date"];
 }
 
 /**

@@ -28,13 +28,6 @@ qx.Class.define('proto.dn.ChannelRequest', {
           f
         )
       }
-      f = message.getChannelId()
-      if (f.length > 0) {
-        writer.writeString(
-          2,
-          f
-        )
-      }
       f = message.getFromDate()
       f = f instanceof Date ? f.toISOString() : ''
       if (f.length > 0) {
@@ -51,6 +44,13 @@ qx.Class.define('proto.dn.ChannelRequest', {
           f
         )
       }
+      f = message.getChannelId()
+      if (f.length > 0) {
+        writer.writeString(
+          2,
+          f
+        )
+      }
       f = message.getLimit()
       if (f !== 0) {
         writer.writeInt32(
@@ -63,6 +63,14 @@ qx.Class.define('proto.dn.ChannelRequest', {
         writer.writeBool(
           6,
           f
+        )
+      }
+      f = message.getPayloadFilter()
+      if (f != null) {
+        writer.writeMessage(
+          7,
+          f,
+          proto.dn.PayloadFilter.serializeBinaryToWriter
         )
       }
     },
@@ -98,10 +106,6 @@ qx.Class.define('proto.dn.ChannelRequest', {
             value = reader.readString()
             msg.setUid(value)
             break
-          case 2:
-            value = reader.readString()
-            msg.setChannelId(value)
-            break
           case 3:
             value = reader.readString()
             msg.setFromDate(value)
@@ -110,6 +114,10 @@ qx.Class.define('proto.dn.ChannelRequest', {
             value = reader.readString()
             msg.setToDate(value)
             break
+          case 2:
+            value = reader.readString()
+            msg.setChannelId(value)
+            break
           case 5:
             value = reader.readInt32()
             msg.setLimit(value)
@@ -117,6 +125,11 @@ qx.Class.define('proto.dn.ChannelRequest', {
           case 6:
             value = reader.readBool()
             msg.setPublicationsOnly(value)
+            break
+          case 7:
+            value = new proto.dn.PayloadFilter()
+            reader.readMessage(value, proto.dn.PayloadFilter.deserializeBinaryFromReader)
+            msg.setPayloadFilter(value)
             break
           default:
             reader.skipField()
@@ -141,13 +154,6 @@ qx.Class.define('proto.dn.ChannelRequest', {
       event: 'changeUid'
     },
 
-    channelId: {
-      check: 'String',
-      init: '',
-      nullable: false,
-      event: 'changeChannelId'
-    },
-
     fromDate: {
       check: 'Date',
       init: null,
@@ -164,6 +170,13 @@ qx.Class.define('proto.dn.ChannelRequest', {
       transform: '_toDate'
     },
 
+    channelId: {
+      check: 'String',
+      init: '',
+      nullable: false,
+      event: 'changeChannelId'
+    },
+
     limit: {
       check: 'Number',
       init: 0,
@@ -176,6 +189,13 @@ qx.Class.define('proto.dn.ChannelRequest', {
       init: false,
       nullable: false,
       event: 'changePublicationsOnly'
+    },
+
+    payloadFilter: {
+      check: 'proto.dn.PayloadFilter',
+      init: null,
+      nullable: true,
+      event: 'changePayloadFilter'
     }
   }
 })

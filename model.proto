@@ -2,32 +2,33 @@ syntax = "proto3";
 package dn.model;
 import "google/protobuf/any.proto";
 import "node_modules/protoc-gen-qx/protos/extensions.proto";
+import "node_modules/deernation-proto-options/options.proto";
 
-/**
- * A List of publications
- */
-message Publications {
-    repeated Publication publications = 1;
-}
-
-/**
- * A List of subscriptions
- */
-message Subscriptions {
-    repeated Subscription subscriptions = 1;
-}
-
-/**
- * A List of subscriptions
- */
-message Actors {
-    repeated Actor actors = 1;
-}
+///**
+// * A List of publications
+// */
+//message Publications {
+//    repeated Publication publications = 1;
+//}
+//
+///**
+// * A List of subscriptions
+// */
+//message Subscriptions {
+//    repeated Subscription subscriptions = 1;
+//}
+//
+///**
+// * A List of subscriptions
+// */
+//message Actors {
+//    repeated Actor actors = 1;
+//}
 
 message Subscription {
     string uid = 1;
-    Channel channel = 2;
-    Actor actor = 3;
+    Channel channel = 2 [(dn).tags = 'type="uid" reverse="true"'];
+    Actor actor = 3 [(dn).tags = 'type="uid" reverse="true"'];
     bool favorite = 4 [(qx).annotations = 'persist'];
     // TODO add notification settings
 }
@@ -40,16 +41,16 @@ message Activity {
     // UUID od the entry
     string uid = 1;
     // time of creation
-    string created = 3;// [(qx).type = "date"];
+    string created = 3 [(dn).tags = 'type="datetime" index="month"'];
     // content hash
-    string hash = 4;
+    string hash = 4 [(dn).tags = 'index="hash"'];
     // creator of this activity
-    Actor actor = 5;
+    Actor actor = 5 [(dn).tags = 'type="uid" reverse="true"'];
     // this activity might by originated by an external source, e.g. a facebook feed entry
-    ExternalRef ref = 6;
+    ExternalRef ref = 6 [(dn).tags = 'type="uid" reverse="true"'];
     bool master = 8;
     // content of the activity
-    google.protobuf.Any payload = 9;
+    google.protobuf.Any payload = 9 [(dn).tags = 'type="uid" reverse="true"'];
 }
 
 /**
@@ -57,7 +58,7 @@ message Activity {
  */
 message ExternalRef {
     string type = 1;
-    string id = 2;
+    string id = 2 [(dn).tags = 'db="ref.id" index="hash'];
     string original = 3;
 }
 
@@ -69,13 +70,13 @@ message Publication {
     // UUID of this entry
     string uid = 1;
     // The actor that created this publication
-    Actor actor = 2;
+    Actor actor = 2 [(dn).tags = 'type="uid" reverse="true"'];
     // The channel this publication has been published in
-    Channel channel = 3;
+    Channel channel = 3 [(dn).tags = 'type="uid" reverse="true"'];
     // The activity content of this publication
-    Activity activity = 4;
+    Activity activity = 4 [(dn).tags = 'type="uid" reverse="true"'];
     // pubishing time
-    string published = 5 [(qx).type = "date"];
+    string published = 5 [(qx).type = "date", (dn).tags = 'type="datetime" index="month"'];
     // true if this is the initial pubishing of the activity
     // false if it e.g. has been published by a share in another channel, probably by another actor
     bool master = 6;
@@ -85,19 +86,20 @@ message Channel {
     // DB UID
     string uid = 1;
     // Full channel name
-    string id = 2;
+    string id = 2 [(dn).tags = 'index="hash" upsert="true"'];
     enum Type {
         PUBLIC = 0;
         PRIVATE = 1;
     }
-    Type type = 3;
+    Type type = 3 [(dn).tags = 'db="channel.type" type="int"'];
     string title = 4;
     string description = 5;
-    Actor owner = 6;
+    Actor owner = 6 [(dn).tags = 'type="uid"'];
     string color = 7;
     repeated string allowedActivityTypes = 8;
     string view = 9;
     bool writeProtected = 10;
+    repeated Publication publications = 11 [(dn).tags = 'db="publication" type="uid" reverse="true"'];
 }
 
 message Actor {
@@ -108,16 +110,17 @@ message Actor {
         SERVER = 1;
         BOT = 2;
     }
-    Type type = 2;
-    string username = 3;
-    ACLRole role = 4;
+    Type type = 2 [(dn).tags = 'db="actor.type" type="int"'];
+    string username = 3 [(dn).tags = 'index="hash" upsert="true"'];
+    ACLRole role = 4 [(dn).tags = 'type="uid"'];
     string name = 5;
     string email = 6;
     string color = 7;
     string locale = 8;
-    repeated Subscription subscriptions = 9;
+    repeated Subscription subscriptions = 9 [(dn).tags = 'type="uid"'];
     bool online = 10;
     string status = 11 [(qx).annotations = 'persist'];
+    string password = 12 [(dn).tags ='type="passord"'];
 }
 
 message AclActions {
@@ -128,7 +131,35 @@ message AclActions {
 
 message ACLRole {
     string uid = 1;
-    string id = 2;
+    string id = 2 [(dn).tags = 'index="hash"'];
     int32 weight = 3;
-    ACLRole parent = 4;
+    ACLRole parent = 4 [(dn).tags = 'type="uid"'];
+}
+
+message AclEntry {
+    string topic = 1;
+    string actions = 2;
+    string memberActions = 3;
+    string ownerActions = 4;
+    ACLRole roleTarget = 5 [(dn).tags = 'type="uid" reverse="true"'];
+}
+
+/**
+ * Only used internally, not send to clients
+ */
+message FirebaseToken {
+    string uid = 1;
+    string tokenId = 2 [(dn).tags = 'index="hash"'];
+    Actor actor = 3 [(dn).tags = 'type="uid"'];
+    // JSON dump of infos received from the googlapi server
+    string info = 4;
+}
+
+message Webhook {
+    string uid = 1;
+    string identifier = 2 [(dn).tags = 'index="hash"'];
+    string secret = 3;
+    string name = 4;
+    Channel channel = 5 [(dn).tags = 'type="uid"'];
+    Actor actor = 6 [(dn).tags = 'type="uid"'];
 }

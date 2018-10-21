@@ -40,5 +40,8 @@
       "proto",
       "jspb"
     ]
+  },
+  "dependencies": {
+    "deernation-proto-options": "git+https://github.com/DeerNation/proto-options.git"
   }
 }

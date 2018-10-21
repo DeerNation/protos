@@ -163,3 +163,10 @@ message Webhook {
     Channel channel = 5 [(dn).tags = 'type="uid"'];
     Actor actor = 6 [(dn).tags = 'type="uid"'];
 }
+
+message LinkMetadata {
+    string uid = 1;
+    string id = 2 [(dn).tags = 'index="hash'];
+    string meta = 3;
+    string fetched = 4 [(dn).tags = 'type="datetime"'];
+}

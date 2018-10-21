@@ -91,7 +91,7 @@ message Channel {
         PUBLIC = 0;
         PRIVATE = 1;
     }
-    Type type = 3 [(dn).tags = 'db="channel.type" type="int"'];
+    Type type = 3 [(dn).tags = 'db="channel.type" type="int" index="int"'];
     string title = 4;
     string description = 5;
     Actor owner = 6 [(dn).tags = 'type="uid"'];
@@ -120,7 +120,7 @@ message Actor {
     repeated Subscription subscriptions = 9 [(dn).tags = 'type="uid"'];
     bool online = 10;
     string status = 11 [(qx).annotations = 'persist'];
-    string password = 12 [(dn).tags ='type="passord"'];
+    string password = 12 [(dn).tags ='type="password"'];
 }
 
 message AclActions {

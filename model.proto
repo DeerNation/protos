@@ -27,8 +27,8 @@ import "node_modules/deernation-proto-options/options.proto";
 
 message Subscription {
     string uid = 1;
-    Channel channel = 2 [(dn).tags = 'type="uid" reverse="true"'];
-    Actor actor = 3 [(dn).tags = 'type="uid" reverse="true"'];
+    Channel channel = 2 [(dno).tags = 'type="uid" reverse="true"'];
+    Actor actor = 3 [(dno).tags = 'type="uid" reverse="true"'];
     bool favorite = 4 [(qx).annotations = 'persist'];
     // TODO add notification settings
 }
@@ -41,16 +41,16 @@ message Activity {
     // UUID od the entry
     string uid = 1;
     // time of creation
-    string created = 3 [(dn).tags = 'type="datetime" index="month"'];
+    string created = 3 [(dno).tags = 'type="datetime" index="month"'];
     // content hash
-    string hash = 4 [(dn).tags = 'index="hash"'];
+    string hash = 4 [(dno).tags = 'index="hash"'];
     // creator of this activity
-    Actor actor = 5 [(dn).tags = 'type="uid" reverse="true"'];
+    Actor actor = 5 [(dno).tags = 'type="uid" reverse="true"'];
     // this activity might by originated by an external source, e.g. a facebook feed entry
-    ExternalRef ref = 6 [(dn).tags = 'type="uid" reverse="true"'];
+    ExternalRef ref = 6 [(dno).tags = 'type="uid" reverse="true"'];
     bool master = 8;
     // content of the activity
-    google.protobuf.Any payload = 9 [(dn).tags = 'type="uid" reverse="true"'];
+    google.protobuf.Any payload = 9 [(dno).tags = 'type="uid" reverse="true"'];
 }
 
 /**
@@ -58,7 +58,7 @@ message Activity {
  */
 message ExternalRef {
     string type = 1;
-    string id = 2 [(dn).tags = 'db="ref.id" index="hash'];
+    string id = 2 [(dno).tags = 'db="ref.id" index="hash"'];
     string original = 3;
 }
 
@@ -70,13 +70,13 @@ message Publication {
     // UUID of this entry
     string uid = 1;
     // The actor that created this publication
-    Actor actor = 2 [(dn).tags = 'type="uid" reverse="true"'];
+    Actor actor = 2 [(dno).tags = 'type="uid" reverse="true"'];
     // The channel this publication has been published in
-    Channel channel = 3 [(dn).tags = 'type="uid" reverse="true"'];
+    Channel channel = 3 [(dno).tags = 'type="uid" reverse="true"'];
     // The activity content of this publication
-    Activity activity = 4 [(dn).tags = 'type="uid" reverse="true"'];
+    Activity activity = 4 [(dno).tags = 'type="uid" reverse="true"'];
     // pubishing time
-    string published = 5 [(qx).type = "date", (dn).tags = 'type="datetime" index="month"'];
+    string published = 5 [(qx).type = "date", (dno).tags = 'type="datetime" index="month"'];
     // true if this is the initial pubishing of the activity
     // false if it e.g. has been published by a share in another channel, probably by another actor
     bool master = 6;
@@ -86,20 +86,20 @@ message Channel {
     // DB UID
     string uid = 1;
     // Full channel name
-    string id = 2 [(dn).tags = 'index="hash" upsert="true"'];
+    string id = 2 [(dno).tags = 'index="hash" upsert="true"'];
     enum Type {
         PUBLIC = 0;
         PRIVATE = 1;
     }
-    Type type = 3 [(dn).tags = 'db="channel.type" type="int" index="int"'];
+    Type type = 3 [(dno).tags = 'db="channel.type" type="int" index="int"'];
     string title = 4;
     string description = 5;
-    Actor owner = 6 [(dn).tags = 'type="uid"'];
+    Actor owner = 6 [(dno).tags = 'type="uid"'];
     string color = 7;
     repeated string allowedActivityTypes = 8;
     string view = 9;
     bool writeProtected = 10;
-    repeated Publication publications = 11 [(dn).tags = 'db="publication" type="uid" reverse="true"'];
+    repeated Publication publications = 11 [(dno).tags = 'db="publication" type="uid" reverse="true"'];
 }
 
 message Actor {
@@ -110,17 +110,17 @@ message Actor {
         SERVER = 1;
         BOT = 2;
     }
-    Type type = 2 [(dn).tags = 'db="actor.type" type="int"'];
-    string username = 3 [(dn).tags = 'index="hash" upsert="true"'];
-    ACLRole role = 4 [(dn).tags = 'type="uid"'];
+    Type type = 2 [(dno).tags = 'db="actor.type" type="int"'];
+    string username = 3 [(dno).tags = 'index="hash" upsert="true"'];
+    ACLRole role = 4 [(dno).tags = 'type="uid"'];
     string name = 5;
     string email = 6;
     string color = 7;
     string locale = 8;
-    repeated Subscription subscriptions = 9 [(dn).tags = 'type="uid"'];
+    repeated Subscription subscriptions = 9 [(dno).tags = 'type="uid"'];
     bool online = 10;
     string status = 11 [(qx).annotations = 'persist'];
-    string password = 12 [(dn).tags ='type="password"'];
+    string password = 12 [(dno).tags ='type="password"'];
 }
 
 message AclActions {
@@ -131,9 +131,9 @@ message AclActions {
 
 message ACLRole {
     string uid = 1;
-    string id = 2 [(dn).tags = 'index="hash"'];
+    string id = 2 [(dno).tags = 'index="hash"'];
     int32 weight = 3;
-    ACLRole parent = 4 [(dn).tags = 'type="uid"'];
+    ACLRole parent = 4 [(dno).tags = 'type="uid"'];
 }
 
 message AclEntry {
@@ -141,7 +141,7 @@ message AclEntry {
     string actions = 2;
     string memberActions = 3;
     string ownerActions = 4;
-    ACLRole roleTarget = 5 [(dn).tags = 'type="uid" reverse="true"'];
+    ACLRole roleTarget = 5 [(dno).tags = 'type="uid" reverse="true"'];
 }
 
 /**
@@ -149,24 +149,24 @@ message AclEntry {
  */
 message FirebaseToken {
     string uid = 1;
-    string tokenId = 2 [(dn).tags = 'index="hash"'];
-    Actor actor = 3 [(dn).tags = 'type="uid"'];
+    string tokenId = 2 [(dno).tags = 'index="hash"'];
+    Actor actor = 3 [(dno).tags = 'type="uid"'];
     // JSON dump of infos received from the googlapi server
     string info = 4;
 }
 
 message Webhook {
     string uid = 1;
-    string identifier = 2 [(dn).tags = 'index="hash"'];
+    string identifier = 2 [(dno).tags = 'index="hash"'];
     string secret = 3;
     string name = 4;
-    Channel channel = 5 [(dn).tags = 'type="uid"'];
-    Actor actor = 6 [(dn).tags = 'type="uid"'];
+    Channel channel = 5 [(dno).tags = 'type="uid"'];
+    Actor actor = 6 [(dno).tags = 'type="uid"'];
 }
 
 message LinkMetadata {
     string uid = 1;
-    string id = 2 [(dn).tags = 'index="hash"'];
+    string id = 2 [(dno).tags = 'index="hash"'];
     string meta = 3;
-    string fetched = 4 [(dn).tags = 'type="datetime"'];
+    string fetched = 4 [(dno).tags = 'type="datetime"'];
 }

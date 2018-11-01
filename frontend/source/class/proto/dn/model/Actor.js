@@ -119,6 +119,13 @@ qx.Class.define('proto.dn.model.Actor', {
           f
         )
       }
+      f = message.getPassword()
+      if (f.length > 0) {
+        writer.writeString(
+          12,
+          f
+        )
+      }
     },
 
     /**
@@ -193,6 +200,10 @@ qx.Class.define('proto.dn.model.Actor', {
           case 11:
             value = reader.readString()
             msg.setStatus(value)
+            break
+          case 12:
+            value = reader.readString()
+            msg.setPassword(value)
             break
           default:
             reader.skipField()
@@ -291,6 +302,13 @@ qx.Class.define('proto.dn.model.Actor', {
       nullable: false,
       event: 'changeStatus',
       '@': ['persist']
+    },
+
+    password: {
+      check: 'String',
+      init: '',
+      nullable: false,
+      event: 'changePassword'
     }
   }
 })

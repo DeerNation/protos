@@ -1,23 +1,12 @@
 
 /**
- * A List of publications
- * Publications class generated from protobuf definition "model.proto".
+ *
+ * ChannelId class generated from protobuf definition "api.proto".
  * auto-generated code PLEASE DO NOT EDIT!
  * 
  */
-qx.Class.define('proto.dn.model.Publications', {
+qx.Class.define('proto.dn.ChannelId', {
   extend: proto.core.BaseMessage,
-  include: [app.api.MUpdate],
-
-  /*
-  *****************************************************************************
-     CONSTRUCTOR
-  *****************************************************************************
-  */
-  construct: function (props) {
-    this.initPublications(new app.api.Array())
-    this.base(arguments, props)
-  },
 
   /*
   *****************************************************************************
@@ -32,12 +21,11 @@ qx.Class.define('proto.dn.model.Publications', {
      * @param writer {jspb.BinaryWriter}
      */
     serializeBinaryToWriter: function (message, writer) {
-      var f = message.getPublications().toArray()
-      if (f != null) {
-        writer.writeRepeatedMessage(
+      var f = message.getId()
+      if (f.length > 0) {
+        writer.writeString(
           1,
-          f,
-          proto.dn.model.Publication.serializeBinaryToWriter
+          f
         )
       }
     },
@@ -45,20 +33,20 @@ qx.Class.define('proto.dn.model.Publications', {
     /**
      * Deserializes binary data (in protobuf wire format).
      * @param bytes {jspb.ByteSource} The bytes to deserialize.
-     * @return {proto.dn.model.Publications}
+     * @return {proto.dn.ChannelId}
      */
     deserializeBinary: function (bytes) {
       var reader = new jspb.BinaryReader(bytes)
-      var msg = new proto.dn.model.Publications()
-      return proto.dn.model.Publications.deserializeBinaryFromReader(msg, reader)
+      var msg = new proto.dn.ChannelId()
+      return proto.dn.ChannelId.deserializeBinaryFromReader(msg, reader)
     },
 
     /**
      * Deserializes binary data (in protobuf wire format) from the
      * given reader into the given message object.
-     * @param msg {proto.dn.model.Publications} The message object to deserialize into.
+     * @param msg {proto.dn.ChannelId} The message object to deserialize into.
      * @param reader {jspb.BinaryReader} The BinaryReader to use.
-     * @return {proto.dn.model.Publications}
+     * @return {proto.dn.ChannelId}
      */
     deserializeBinaryFromReader: function (msg, reader) {
       msg.setDeserialized(true)
@@ -70,9 +58,8 @@ qx.Class.define('proto.dn.model.Publications', {
         var field = reader.getFieldNumber()
         switch (field) {
           case 1:
-            value = new proto.dn.model.Publication()
-            reader.readMessage(value, proto.dn.model.Publication.deserializeBinaryFromReader)
-            msg.getPublications().push(value)
+            value = reader.readString()
+            msg.setId(value)
             break
           default:
             reader.skipField()
@@ -90,13 +77,11 @@ qx.Class.define('proto.dn.model.Publications', {
   */
   properties: {
 
-    /**
-     * @type {app.api.Array} array of {@link proto.dn.model.Publication}
-     */
-    publications: {
-      check: 'app.api.Array',
-      deferredInit: true,
-      event: 'changePublications'
+    id: {
+      check: 'String',
+      init: '',
+      nullable: false,
+      event: 'changeId'
     }
   }
 })

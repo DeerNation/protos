@@ -46,6 +46,10 @@ service Com {
     // ----------------------------------------------
     // Misc
     // ----------------------------------------------
+    /**
+     * Delete all publication (including Activities, Refs + Payloads) from a channel
+     */
+    rpc clearChannel(ChannelId) returns (Response);
 }
 
 enum ChangeType {
@@ -139,6 +143,10 @@ message Uid {
 }
 
 message Empty {}
+
+message ChannelId {
+    string id = 1;
+}
 
 message ChannelRequest {
     // UID of the channel

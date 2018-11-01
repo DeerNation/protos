@@ -201,6 +201,24 @@ qx.Class.define('proto.dn.Com', {
         requestType: proto.dn.Object,
         responseType: proto.dn.Response
       }, context)
+    },
+
+    /**
+     * Delete all publication (including Activities, Refs + Payloads) from a channel
+     * @param payload {proto.dn.ChannelId}
+     * @param context {Object} promise context
+     * @returns {Promise} resolves to {proto.dn.Response}
+     */
+    clearChannel: function (payload, context) {
+      qx.core.Assert.assertInstance(payload, proto.dn.ChannelId)
+      return this._call(payload, {
+        methodName: 'clearChannel',
+        service: this,
+        requestStream: false,
+        responseStream: false,
+        requestType: proto.dn.ChannelId,
+        responseType: proto.dn.Response
+      }, context)
     }
   }
 })

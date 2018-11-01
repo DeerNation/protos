@@ -16,6 +16,7 @@ qx.Class.define('proto.dn.model.Channel', {
   */
   construct: function (props) {
     this.initAllowedActivityTypes(new app.api.Array())
+    this.initPublications(new app.api.Array())
     this.base(arguments, props)
   },
 
@@ -110,6 +111,14 @@ qx.Class.define('proto.dn.model.Channel', {
           f
         )
       }
+      f = message.getPublications().toArray()
+      if (f != null) {
+        writer.writeRepeatedMessage(
+          11,
+          f,
+          proto.dn.model.Publication.serializeBinaryToWriter
+        )
+      }
     },
 
     /**
@@ -179,6 +188,11 @@ qx.Class.define('proto.dn.model.Channel', {
           case 10:
             value = reader.readBool()
             msg.setWriteProtected(value)
+            break
+          case 11:
+            value = new proto.dn.model.Publication()
+            reader.readMessage(value, proto.dn.model.Publication.deserializeBinaryFromReader)
+            msg.getPublications().push(value)
             break
           default:
             reader.skipField()
@@ -269,6 +283,15 @@ qx.Class.define('proto.dn.model.Channel', {
       init: false,
       nullable: false,
       event: 'changeWriteProtected'
+    },
+
+    /**
+     * @type {app.api.Array} array of {@link proto.dn.model.Publication}
+     */
+    publications: {
+      check: 'app.api.Array',
+      deferredInit: true,
+      event: 'changePublications'
     }
   }
 })
